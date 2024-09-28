@@ -48,6 +48,9 @@
 # include <stdlib.h>
 #endif
 
+// warning C4191 : 'type cast' : unsafe conversion from 'FARPROC' to 'DWORD (__cdecl *)(PAPCFUNC,HANDLE,DWORD)'
+#pragma warning(disable: 4191)
+
 /*
  * Handle to quserex.dll
  */
