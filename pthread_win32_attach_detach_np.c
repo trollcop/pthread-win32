@@ -54,7 +54,7 @@
 static HINSTANCE ptw32_h_quserex = NULL;
 
 BOOL
-pthread_win32_process_attach_np ()
+pthread_win32_process_attach_np (void)
 {
   TCHAR QuserExDLLPathBuf[1024];
   BOOL result = TRUE;
@@ -163,7 +163,7 @@ pthread_win32_process_attach_np ()
 
 
 BOOL
-pthread_win32_process_detach_np ()
+pthread_win32_process_detach_np (void)
 {
   if (ptw32_processInitialized)
     {
@@ -215,13 +215,13 @@ pthread_win32_process_detach_np ()
 }
 
 BOOL
-pthread_win32_thread_attach_np ()
+pthread_win32_thread_attach_np (void)
 {
   return TRUE;
 }
 
 BOOL
-pthread_win32_thread_detach_np ()
+pthread_win32_thread_detach_np (void)
 {
   if (ptw32_processInitialized)
     {
