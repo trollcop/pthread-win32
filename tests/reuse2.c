@@ -93,9 +93,9 @@ static void * func(void * arg)
 
   InterlockedIncrement(&done);
 
-  return (void *) 0; 
+  return (void *) 0;
 }
- 
+
 #ifndef MONOLITHIC_PTHREAD_TESTS
 int
 main()
@@ -108,8 +108,8 @@ test_reuse2(void)
   pthread_attr_t attr;
   int i;
   unsigned int notUnique = 0,
-	       totalHandles = 0,
-	       reuseMax = 0,
+	       totalHandles = 0;
+  size_t       reuseMax = 0,
 	       reuseMin = NUMTHREADS;
   int actual_count = NUMTHREADS;
 
@@ -154,7 +154,7 @@ test_reuse2(void)
       if (t[i].p != NULL)
         {
           int j;
-		  unsigned int thisMax;
+          size_t thisMax;
 
           thisMax = t[i].x;
 
@@ -188,11 +188,11 @@ test_reuse2(void)
    * pthread_t reuse counts start at 0, so we need to add 1
    * to the max and min values derived above.
    */
-  printf("For %d total threads:\n", actual_count);
-  printf("Non-unique IDs = %d\n", notUnique);
-  printf("Reuse maximum  = %d\n", reuseMax + 1);
-  printf("Reuse minimum  = %d\n", reuseMin + 1);
-  printf("Total handles  = %d\n", totalHandles);
+  printf("For %u total threads:\n", actual_count);
+  printf("Non-unique IDs = %u\n", notUnique);
+  printf("Reuse maximum  = %zd\n", reuseMax + 1);
+  printf("Reuse minimum  = %zd\n", reuseMin + 1);
+  printf("Total handles  = %u\n", totalHandles);
 
   return 0;
 }

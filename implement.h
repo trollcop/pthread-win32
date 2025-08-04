@@ -251,7 +251,7 @@ struct ptw32_thread_t_
   int sched_priority;		/* As set, not as currently is */
   int cancelState;
   int cancelType;
-  int implicit:1;
+  unsigned int implicit:1;
   DWORD thread;			/* Windows thread ID */
 #if defined(HAVE_CPU_AFFINITY)
   size_t cpuset;		/* Thread CPU affinity set */
@@ -788,7 +788,11 @@ char *ptw32_strdup (const char *s);
 #endif
 void ptw32_throw (DWORD exception)
 #if defined(__cplusplus)
+#if __cplusplus <= 201402L
     throw(ptw32_exception_cancel,ptw32_exception_exit)
+#else
+	noexcept(false)
+#endif
 #endif
 ;
 

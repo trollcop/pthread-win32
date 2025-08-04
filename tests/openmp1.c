@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #ifdef _OPENMP
 #  include <omp.h>
 #endif
@@ -51,7 +52,7 @@ static void *_thread(void* Id) {
 }
 
 // MainThread
-static void MainThread() {
+static void MainThread(void) {
   int i;
 
 #ifdef _OPENMP
